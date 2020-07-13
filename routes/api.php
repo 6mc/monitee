@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('/save', 'EntryController@store');
 Route::get('/show', 'EntryController@show');
+
+Route::post('/photo', 'photoController@store');
