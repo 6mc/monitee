@@ -14,10 +14,11 @@ class EntryController extends Controller
 
       if (strpos($request->getContent(), '.') !== false) {
         //  echo 'true';
-
+//$str = $request->getContent();
+//$var = array_pop(explode("/", $str));
 
 $result =       entry::create(
-    ['process' => $request->getContent(),
+    ['process' =>  @end(explode('/', $request->getContent())) ,
     'computer' =>  $request->header('user') ]
   );
   return $result;
