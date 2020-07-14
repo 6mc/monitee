@@ -59,14 +59,15 @@
 			</div>
 			<fieldset>
 				<div class="grid grid-cols-4 gap-2">
-					<img src="https://images-na.ssl-images-amazon.com/images/I/81IIHrrH7PL._AC_SX425_.jpg">
-					<img src="https://images-na.ssl-images-amazon.com/images/I/6123EInXGSL._SX355_.jpg">
-					<img src="https://images-na.ssl-images-amazon.com/images/I/81opIAmQheL._SY355_.jpg">
-					<img src="https://target.scene7.com/is/image/Target/GUEST_07c8eaaa-9476-472d-848c-4905b2eefab8?wid=488&hei=488&fmt=pjpeg">
-					<img src="https://images-na.ssl-images-amazon.com/images/I/81D%2BwuLfeIL._SX355_.jpg">
-					<img src="https://images-na.ssl-images-amazon.com/images/I/51TNtUvN9%2BL._SY355_.jpg">
-					<img src="https://images-na.ssl-images-amazon.com/images/I/41mBk7mfpaL.jpg">
-					<img src="https://m.media-amazon.com/images/I/81wgMdbU+UL._SS500_.jpg">
+  @foreach ($employees as $employee)
+					@foreach($screenshots as $ss)
+
+					@if( $ss->pc == $employee->pc)
+					<img src="{{$ss->path}}">
+					@endif
+
+					@endforeach
+					@endforeach
 				</div>
 			</fieldset>
 			<!-- <img src="https://miro.medium.com/max/918/0*rpB-jsFlnH9ZbzII" width="100" class="mx-auto my-2"> -->

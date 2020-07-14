@@ -2,9 +2,18 @@
 hostname > c:/host.txt
 set /p USER=<c:/host.txt
 set form="pc=%USER%"
-rem curl -F "data=@aa.jpg" -F %form% http://localhost:8080/api/photo
-for /f %%i in ('dir *jpg /b') do curl -F "data=@%%i" -F %form% http://localhost:8080/api/photo
-TIMEOUT /T 600
+rem for /f %%i in ('dir *jpg /b') do(
+rem set file=%%i
+rem goto send
+rem )
+FOR /F %%i IN ('dir *jpg /b /O-D') DO (
+    SET file=%%i
+    GOTO send
+)
+:send
+rem %file%
+curl -F "data=@%file%" -F %form% http://localhost:6060/api/photo
+TIMEOUT /T 60
 goto loop
 
 
