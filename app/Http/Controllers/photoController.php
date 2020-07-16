@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\photo;
+use App\employee;
 
 
 class photoController extends Controller
@@ -26,5 +27,15 @@ class photoController extends Controller
 
      return "Success";
     }
+
+    public function detail($id)
+    {
+
+   return employee::findorFail($id);
+   
+    }
+
+
+
 
 }

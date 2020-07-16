@@ -63,7 +63,10 @@
 					@foreach($screenshots as $ss)
 
 					@if( $ss->pc == $employee->pc)
+
+					<a href="/detail/{{$employee->id}}">
 					<img src="{{$ss->path}}">
+					</a>
 					@endif
 
 					@endforeach
