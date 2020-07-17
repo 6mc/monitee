@@ -41,7 +41,7 @@ outline: 0;
       <button><i class="fa fa-step-backward"></i></button>
       <button><i class="fa fa-step-forward"></i></button>
       <input type="text" placeholder="Paste Youtube URL Here" class="add-music-input g-color b-black">
-      <input oninput="refreshFrame(this.value)" class="handle" type="range" value="{{count($screenshots)}}" min="0" max="{{count($screenshots)}}" style="width:94%; margin-left:3%; border-style: inset;
+      <input id="range" oninput="refreshFrame(this.value)" class="handle" type="range" value="{{count($screenshots)}}" min="0" max="{{count($screenshots)}}" style="width:94%; margin-left:3%; border-style: inset;
     border-color: #7e7e7e;
     border-width: 2px;
     -webkit-appearance: none;
@@ -87,7 +87,7 @@ outline: 0;
 <script>
 
 	frame = document.getElementById('frame'); 
-
+  range = document.getElementById('range');
 
 
 	var bingo = [];
@@ -103,6 +103,33 @@ outline: 0;
 	frame.src = "/" + bingo[index-1];
 
 	}
+
+
+  getLastFrame();
+
+
+  function getLastFrame() {
+    
+    fetch('/live/'+ window.location.href.split("/")[4])
+  .then(response => response.json())
+  .then(data =>{ 
+
+    bingo.push(data.path);
+    range.setAttribute('max', Number(range.getAttribute('max')) + 1);
+    if (range.value == range.getAttribute('max')) {}
+    range.value = Number(range.getAttribute('max'));
+    frame.src = "/" + bingo[range.value-1];
+
+    setTimeout(getLastFrame(), 10000);
+   });
+
+
+  
+
+  }
+
+
+
 
 </script>
 </body>

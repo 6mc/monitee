@@ -40,6 +40,11 @@ return view('detail', compact('screenshots'));
 
     }
 
+    public function live($id)
+    {
+      return photo::where('pc', employee::findorFail($id)->pc)->orderBy('id', 'desc')->first();
+    }
+
 
 
 
