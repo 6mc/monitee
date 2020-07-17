@@ -31,8 +31,13 @@ class photoController extends Controller
     public function detail($id)
     {
 
-   return employee::findorFail($id);
+   // return employee::findorFail($id)->pc;
    
+$screenshots =  photo::where('pc', employee::findorFail($id)->pc)->get();
+
+return view('detail', compact('screenshots'));
+
+
     }
 
 
