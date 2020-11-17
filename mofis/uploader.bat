@@ -12,9 +12,6 @@ FOR /F %%i IN ('dir *jpg /b /O-D') DO (
 )
 :send
 rem %file%
-curl -F "data=@%file%" -F %form% http://localhost:6060/api/photo
-TIMEOUT /T 60
+curl -F "data=@%file%" -F %form% http://monitor.local/api/photo
+TIMEOUT /T 1
 goto loop
-
-
-rem Deneme curl -F 'data=@%USERPROFILE%\Desktop\mofis\aa.jpg' https://8ff6fabc98d4707f3588dde65fe86bf9.m.pipedream.net
