@@ -52,15 +52,25 @@
 			<img src="https://thumbs.gfycat.com/JoyfulAfraidAltiplanochinchillamouse.webp" width="48" class="mx-auto my-6">
 			<div class="mb-8 px-6">
 				<div class="field-row" class="w-full">
-					<label for="range22">Introvert</label>
+				<!-- 	<label for="range22">Introvert</label>
 					<input id="range22" type="range" min="0" max="10" value="5" />
-					<label for="range23">Extrovert</label>
+					<label for="range23">Extrovert</label> -->
+					<form method="get" action="/home">
+					 <input type="date" min="@php echo explode(' ', \App\photo::find(1)->created_at)[0]; @endphp" name="date" 
+					 @if(isset($_GET['date']))
+					 value="@php echo $_GET['date']; @endphp"
+					 @else
+					 value="@php echo date('Y-m-d'); @endphp" 
+					 @endif
+					 max="@php echo date("Y-m-d"); @endphp">
+					<input type="submit" value="Getir" name="">
+					</form>
 				</div>
 			</div>
 			<fieldset>
 				<div class="grid grid-cols-4 gap-2">
   @foreach ($employees as $employee)
-					@foreach($screenshots as $ss)
+				{{-- 	@foreach($screenshots as $ss)
 
 					@if( $ss->pc == $employee->pc)
 
@@ -70,6 +80,18 @@
 					@endif
 
 					@endforeach
+					--}}
+
+					@if(isset($_GET['date']))
+					<a href="/history/{{$employee->id}}/{{$_GET['date']}}">
+					@else
+					<a href="/detail/{{$employee->id}}">
+					@endif
+
+
+					<img src="{{$employee->last_screenshot}}">
+					</a>
+
 					@endforeach
 				</div>
 			</fieldset>

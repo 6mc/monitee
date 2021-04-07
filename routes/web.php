@@ -18,6 +18,11 @@ Route::get('/', function () {
 
 
 Auth::routes();
-
+Route::post('/history', 'photoController@redirecthistory');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/detail/{id}', 'photoController@detail');
+Route::get('/history/{id}/{timestamp}', 'photoController@history');
+
+Route::get('/live/{id}', 'photoController@live');
+Route::post('/command', 'EntryController@addCommand');
+
