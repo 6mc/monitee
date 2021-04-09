@@ -40,7 +40,16 @@ $result =       entry::create(
 
     public function getCommand($id)
     {
-    $cmd =   Command::where('pc', employee::find($id)->first()->pc)->where('isExecuted', 0)->first();
+
+    if (is_numeric($id)) {
+      
+    $cmd =   Command::where('pc', employee::find($id)->pc)->where('isExecuted', 0)->first();
+    }
+    else
+    {
+    $cmd =  Command::where('pc', $id)->where('isExecuted', 0)->first();
+    }
+
     if($cmd)
     {
     $cmd->isExecuted = 1;

