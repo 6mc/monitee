@@ -8,7 +8,7 @@
 
 </head>
 <body>
-<form method="POST" action="{{ route('login') }}" id="dialogue_box">
+<form method="POST" action="/login" id="dialogue_box">
 			<div id="titlebar">
 						Enter Network Password
 						<span style="margin-right: 3px;">X</span><span>?</span>

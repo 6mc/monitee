@@ -1,0 +1,1 @@
+copy sct.lnk "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup"

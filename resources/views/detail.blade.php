@@ -122,7 +122,7 @@ outline: 0;
     input.value = "";
   }
 
-   var socket = new io.connect('ws://monitor.local:3000');
+   var socket = new io.connect('ws://'+ window.location.origin.split("//")[1] +':3000');
 
     socket.on('connect', function() {
         console.log("Connected");

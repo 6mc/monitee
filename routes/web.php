@@ -12,17 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+  //  return view('auth.login');
+	return redirect("home");
 });
 
 
 
 Auth::routes();
 Route::post('/history', 'photoController@redirecthistory');
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/detail/{id}', 'photoController@detail');
-Route::get('/history/{id}/{timestamp}', 'photoController@history');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/detail/{id}', 'photoController@detail')->middleware('auth');
+Route::get('/history/{id}/{timestamp}', 'photoController@history')->middleware('auth');
 
-Route::get('/live/{id}', 'photoController@live');
+Route::get('/live/{id}', 'photoController@live')->middleware('auth');
 Route::post('/command', 'EntryController@addCommand');
 
