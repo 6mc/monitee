@@ -100,6 +100,8 @@
 	</div>
 </body>
 <!-- partial -->
-
+<script>
+	setInterval(function(){ location.reload(); }, 60000);
+</script>
 </body>
 </html>

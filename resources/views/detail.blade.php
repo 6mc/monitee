@@ -86,8 +86,12 @@ outline: 0;
         @csrf
         <input type="hidden" value="{{$screenshots[0]->pc}}" name="pc">
       <input type="text" name="command" style="float: left;" placeholder="Enter CMD Command" class="add-music-input g-color b-black">
-      <button type="submit" >Execute Command</button>
+      <button type="submit" >CMD Komutu Gir</button>
       </form>
+      <button onclick="utils('shutdown')" style="float: right;" type="submit" >Bilgisayarı Kapat</button>
+      <button onclick="utils('standby')" style="float: right;" type="submit" >Uyku Moduna Al</button>
+      <button onclick='utils("closechrome")' style="float: right;" type="submit" >Chrome Kapat</button>
+      <button onclick="utils('killeverything')" style="float: right;" type="submit" >Tüm Programları Kapat</button>
     </div>
   </div>
 </div>
@@ -115,6 +119,38 @@ outline: 0;
     });
   }
 
+   function utils(selection) {
+    
+    console.log("in utils");
+
+  var command = "";
+     
+   switch (selection) {
+  case "closechrome":
+    command = "taskkill /F /IM chrome.exe /T";
+    break;
+  case "standby":
+    command = "nircmd standby";
+    break;
+  case "killeverything":
+    command = 'powershell -command "(New-Object -comObject Shell.Application).Windows() | foreach-object {$_.quit()}; Get-Process | Where-Object {$_.MainWindowTitle -ne \\"\\"} | stop-process"';
+    break;
+  case "shutdown":
+    command = 'nircmd initshutdown "shutting down the system within 0 seconds" 0 force';
+}
+
+    var csrf = document.querySelector('meta[name="csrf-token"]').content;
+     $.ajax({
+        url: '/command',
+        type: "POST",
+        data: { 'command': command , '_token': csrf, 'pc': "{{$screenshots[0]->pc}}" },
+        success: function (response) {
+            console.log("command executed");
+        }
+    });
+
+  console.log(command);
+  }
 
 
   function execute(input) {

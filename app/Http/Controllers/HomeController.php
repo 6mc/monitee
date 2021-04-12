@@ -33,7 +33,7 @@ class HomeController extends Controller
       $screenshots = photo::where('created_at','>', $fmdate)->get();
 
       $date = new DateTime;
-      $date->modify('-10 minutes');
+      $date->modify('-3 minutes');
       $formatted_date = $date->format('Y-m-d H:i:s');
       $employees = employee::all();
       $entries =   entry::where('created_at','>', $formatted_date)->get();
