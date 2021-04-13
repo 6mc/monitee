@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\photo;
+use DateTime;
 
 class employee extends Model
 {
@@ -12,19 +13,25 @@ class employee extends Model
         'name', 'pc'
     ];
 
-    protected $appends = ['last_screenshot'];
+    protected $appends = ['last_screenshot','last_window','pc_status'];
 
      public function getLastScreenshotAttribute()
     {
-        // if ($this->hotel_id == null) {
-        //     return '';
-        // }
-        // else
-        // {   
-        //     return GlobalHotel::find($this->hotel_id)->name;
-        // }
-    
     	return photo::where('pc',$this->pc)->orderBy('created_at', 'desc')->first()->path;
     }
+         public function getLastWindowAttribute()
+    {
+        return photo::where('pc',$this->pc)->orderBy('created_at', 'desc')->first()->path;
+    }
+        public function getPcStatusAttribute()
+    {
 
+      $now = new DateTime;
+      $now->modify('-2 minutes');
+      $now->format('Y-m-d H:i:s');
+      if ( photo::where('pc',$this->pc)->orderBy('created_at', 'desc')->first()->created_at  >= $now)
+      return 'green';
+      else
+      return 'red';
+    }
 }

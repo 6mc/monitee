@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Welcome to board</title>
+<link rel="stylesheet" href="/taskbar.css">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css'>
 <link rel='stylesheet' href='https://unpkg.com/98.css'><link rel="stylesheet" href="/mtyle.css">
-
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -24,7 +24,7 @@
 				<img src="https://www.laweekly.com/wp-content/uploads/2019/05/tom_anderson_myspace_smjpg_jpeg_image_230x228_pixels.png" width="96" class="mt-1">
 				<div class="ml-2">
 					<div class="flex item-center">
-						<h1 class="text-xl font-bold">Ted Goas</h1> <img src="https://66.media.tumblr.com/14f9a65f9733eac78600ea51b979cfd3/tumblr_ng4sf61TfA1qcwgxao1_500.gifv" width="24" class="ml-1 -mt-1">
+						<h1 class="text-xl font-bold">Ted Ghost</h1> <img src="https://66.media.tumblr.com/14f9a65f9733eac78600ea51b979cfd3/tumblr_ng4sf61TfA1qcwgxao1_500.gifv" width="24" class="ml-1 -mt-1">
 					</div>
 					<p class="text-sm">Trying to create work that is cool enough to show my friends and honest enough to show my parents.</p>
 					<p class="text-sm mt-1">I'm from New Jersey: greatest country in the world.</p>
@@ -70,18 +70,6 @@
 			<fieldset>
 				<div class="grid grid-cols-4 gap-2">
   @foreach ($employees as $employee)
-				{{-- 	@foreach($screenshots as $ss)
-
-					@if( $ss->pc == $employee->pc)
-
-					<a href="/detail/{{$employee->id}}">
-					<img src="{{$ss->path}}">
-					</a>
-					@endif
-
-					@endforeach
-					--}}
-
 					@if(isset($_GET['date']))
 					<a href="/history/{{$employee->id}}/{{$_GET['date']}}">
 					@else
@@ -89,7 +77,7 @@
 					@endif
 
 
-					<img src="{{$employee->last_screenshot}}">
+					<img  style="border-width: thin; border-color: {{$employee->pc_status}};" src="{{$employee->last_screenshot}}">
 					</a>
 
 					@endforeach
@@ -98,10 +86,15 @@
 			<!-- <img src="https://miro.medium.com/max/918/0*rpB-jsFlnH9ZbzII" width="100" class="mx-auto my-2"> -->
 		</div>
 	</div>
+
+
+  @include('layouts.dock')
+
+
 </body>
 <!-- partial -->
 <script>
-	setInterval(function(){ location.reload(); }, 60000);
+//	setInterval(function(){ location.reload(); }, 60000);
 </script>
 </body>
 </html>

@@ -6,6 +6,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta name="viewport" content="initial-scale=5.0, maximum-scale=6.0, user-scalable=no" />
   <title>CodePen - WinAmp Modified</title>
+  <link rel="stylesheet" href="/taskbar.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="/style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
@@ -35,8 +36,17 @@ outline: 0;
   </header>
   <div class="inner">
     <div class="current-play b-black g-color">
-      PLAYING : Dream Theater - One Last Time
-    </div>
+      Pc Durumu
+      @php
+      $now = new DateTime;
+      $now->modify('-2 minutes');
+      $now->format('Y-m-d H:i:s');
+      if ( $screenshots[count($screenshots)-1]->created_at  >= $now)
+      echo 'Açık';
+      else
+      echo 'Kapalı';
+      @endphp
+   </div>
     <div class="control">
       <form id="msg" method="POST" action="/command">
         @csrf
@@ -95,6 +105,7 @@ outline: 0;
     </div>
   </div>
 </div>
+  @include('layouts.dock')
 <!-- partial --> 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js" integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg==" crossorigin="anonymous"></script>
