@@ -7,6 +7,7 @@ use App\entry;
 use App\employee;
 use DateTime;
 use App\photo;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -38,5 +39,29 @@ class HomeController extends Controller
       $employees = employee::all();
       $entries =   entry::where('created_at','>', $formatted_date)->get();
        return view('board', compact('entries', 'employees','screenshots'));
+    }
+
+      public function config()
+    {
+   $interval =  Storage::disk('public')->get('interval');
+  $liveinterval = Storage::disk('public')->get('liveinterval');
+   $employees = employee::all();
+ return view('config', compact('interval', 'liveinterval','employees'));
+    }
+
+    public function editconfig(Request $request)
+    {
+     Storage::disk('public')->put('interval', $request->interval);
+     Storage::disk('public')->put('liveinterval', $request->liveinterval);
+   
+    $i = 0;
+     foreach ($request->employeepc as $employee) {
+       employee::where('pc', $employee)->update(['name' => $request->employeename[$i]]);
+      $i++;
+     }
+
+
+     return redirect('/config');
+    // return $request;
     }
 }

@@ -10,8 +10,8 @@ del *.jpg
 
 nircmd.exe savescreenshot test.jpg
 set interval=60000
-hostname>c:/host.txt
-set /p USER=<c:/host.txt
+hostname>host.txt
+set /p USER=<host.txt
 set form="pc=%USER%"
 set header="User: %USER%"
 :loop
@@ -36,7 +36,7 @@ set /p CMD=< temp.txt
 for /f %%i in ('powershell.exe -file ./tabs.ps1') do  set lastproc=%%i
 
 
-for /f "tokens=9 skip=1 delims=," %%i in ('tasklist /fi "imagename eq %lastproc%.exe" /fo csv /v') do curl -X POST -H "Content-Type: text/plain" -H %header% --data-raw %%i http://monitor.local/api/save & goto done
+for /f "tokens=9 skip=1 delims=," %%i in ('tasklist /fi "imagename eq %lastproc%.exe" /fo csv /v') do curl -X POST -H "Content-Type: text/plain" -H %header% --data-raw %%i %endpoint%/api/save & goto done
 :done
 
 goto loop

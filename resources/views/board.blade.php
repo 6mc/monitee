@@ -28,7 +28,7 @@
 					</div>
 					<p class="text-sm">Trying to create work that is cool enough to show my friends and honest enough to show my parents.</p>
 					<p class="text-sm mt-1">I'm from New Jersey: greatest country in the world.</p>
-					<p class="text-sm mt-1"><a href="https://www.tedgoas.com/" class="mr-2">Join my webring</a> <a href="https://twitter.com/TedGoas/status/1263926891511193600">Add me on MySpace</a></p>
+					<p class="text-sm mt-1"><a href="/config" class="mr-2">Konfigürasyon Ayarları</a> <a href="https://twitter.com/TedGoas/status/1263926891511193600">Add me on MySpace</a></p>
 				</div>
 			</div>
 			<fieldset class="mt-4">
@@ -93,8 +93,9 @@
 
 </body>
 <!-- partial -->
+
 <script>
-//	setInterval(function(){ location.reload(); }, 60000);
+	setInterval(function(){ location.reload(); }, 60000);
 </script>
 </body>
 </html>
