@@ -18,9 +18,12 @@ Route::get('/', function () {
 
 
 
+
 Auth::routes();
 Route::post('/history', 'photoController@redirecthistory');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/config', 'HomeController@config')->name('home')->middleware('auth');
+Route::post('/config', 'HomeController@editconfig')->name('home')->middleware('auth');
 Route::get('/detail/{id}', 'photoController@detail')->middleware('auth');
 Route::get('/history/{id}/{timestamp}', 'photoController@history')->middleware('auth');
 
