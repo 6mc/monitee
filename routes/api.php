@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\employee;
+use App\photo;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/save', 'EntryController@store');
+Route::post('/signup', 'EntryController@signup');
 Route::get('/show', 'EntryController@show');
 
 Route::get('/getCommand/{id}', 'EntryController@getCommand');
@@ -31,5 +33,5 @@ Route::post('/photo', 'photoController@store');
 Route::get('/test', function () {
  // return  \App\photo::find(1)->created_at;
 //return \App\photo::where('pc', employee::findorFail(1)->pc)->whereDate('created_at', '=', "05-04-2021")->get();
-return Carbon\Carbon::createFromTimestamp(1617784610)->toDateString();
+return photo::where('pc',$this->pc)->orderBy('created_at', 'desc')->first();
 });

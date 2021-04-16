@@ -212,7 +212,7 @@ outline: 0;
     frame.src = "/" + bingo[range.value-1];
     console.log('calistim')
    // getLastFrame();
-setTimeout(getLastFrame, 10000);
+setTimeout(getLastFrame, {{ intval($liveinterval)*1000 }});
    });
   }
 

@@ -8,7 +8,7 @@ use App\employee;
 use App\User;
 use Carbon\Carbon;
 use Zipper;
-
+use Illuminate\Support\Facades\Storage;
 
 class photoController extends Controller
 {
@@ -35,10 +35,10 @@ class photoController extends Controller
     {
 
    // return employee::findorFail($id)->pc;
-   
-$screenshots =  photo::where('pc', employee::findorFail($id)->pc)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+   $liveinterval = Storage::disk('public')->get('liveinterval');
+   $screenshots =  photo::where('pc', employee::findorFail($id)->pc)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
 
-return view('detail', compact('screenshots'));
+   return view('detail', compact('screenshots','liveinterval'));
 
 
     }

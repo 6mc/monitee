@@ -30,6 +30,19 @@ $result =       entry::create(
     // }
   }
 
+      public function signup(Request $request)
+    {
+
+$result =       employee::create(
+    ['name' => $request->header('name') ,
+    'pc' =>  $request->header('user') ]
+  );
+  return $result;
+
+  }
+
+
+
     public function show()
     {
       //  return view('board');
