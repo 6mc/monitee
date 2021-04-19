@@ -38,7 +38,7 @@ class HomeController extends Controller
       $formatted_date = $date->format('Y-m-d H:i:s');
       $employees = employee::all();
       $entries =   entry::where('created_at','>', $formatted_date)->get();
-       return view('board', compact('entries', 'employees','screenshots'));
+       return view('boardv2', compact('entries', 'employees','screenshots'));
     }
 
       public function config()
