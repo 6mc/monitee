@@ -8,7 +8,7 @@
                 @foreach($employees as $employee)
                   <div class="blog_item mr-1">
                       <div class="blog_image">
-                          <img class="img-fluid" src="{{$employee->last_screenshot}}">
+                          <img class="img-fluid" src="/{{$employee->last_screenshot}}">
                       </div>
                   </div>  
                  @endforeach       
