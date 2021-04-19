@@ -152,7 +152,8 @@ function sendmessage() {
     //document.getElementById('message').value = "nircmd infobox "+ document.getElementById('message').value +"  'Mesaj' ";
     $('#msg').submit(function () {
       // body...
-      $('#message').val('nircmd infobox "'+ document.getElementById('message').value +'"  "Mesaj" ');
+     var msg =  'nircmd trayballoon "Mesaj" "'+ document.getElementById('message').value +'" "shell32.dll,22" 15000';
+      $('#message').val(msg);
     });
   }
 
