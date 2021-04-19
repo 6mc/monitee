@@ -38,8 +38,12 @@ class photoController extends Controller
    // return employee::findorFail($id)->pc;
    $liveinterval = Storage::disk('public')->get('liveinterval');
    $screenshots =  photo::where('pc', employee::findorFail($id)->pc)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+   
+   $employees = employee::all();
+  $entries =  entry::where('computer', employee::findorFail($id)->pc)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
 
-   return view('detail', compact('screenshots','liveinterval'));
+
+   return view('detailv2', compact('screenshots','liveinterval','employees','entries'));
 
 
     }
