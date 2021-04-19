@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\photo;
 use App\employee;
+use App\entry;
 use App\User;
 use Carbon\Carbon;
 use Zipper;
@@ -55,18 +56,17 @@ class photoController extends Controller
         public function history($id, $date)
     {
 
-   // return employee::findorFail($id)->pc;
-   
+$employees = employee::all();
 
 $screenshots =  photo::where('pc', employee::findorFail($id)->pc)->whereDate('created_at', '=', $date)->get();
   
   $Path = public_path($date .'.zip');
   Zipper::make($Path)->extractTo('history');
 
-// $date = new DateTime();
+$entries =  entry::where('computer', employee::findorFail($id)->pc)->whereDate('created_at', '=', $date)->get();
 // $date->setTimestamp($timestamp);
 
-return view('history', compact('screenshots'));
+return view('historyv3', compact('screenshots','employees','entries'));
 
 
     }
