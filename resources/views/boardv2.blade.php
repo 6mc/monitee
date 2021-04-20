@@ -52,7 +52,7 @@
                   <img src="{{$employee->last_screenshot}}" width="100%" class="image" />
                 </a>
                 <div class="card-body">
-                  <p class="card-text">User</p>
+                  <p class="card-text">{{$employee->name}}</p>
                   <div class="d-flex justify-content-end">
                     @if($employee->pc_status == 'green')
                     <span class="badge badge-pill badge-success">Online</span>

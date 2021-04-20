@@ -46,7 +46,7 @@ class HomeController extends Controller
    $interval =  Storage::disk('public')->get('interval');
   $liveinterval = Storage::disk('public')->get('liveinterval');
    $employees = employee::all();
- return view('config', compact('interval', 'liveinterval','employees'));
+ return view('configv2', compact('interval', 'liveinterval','employees'));
     }
 
     public function editconfig(Request $request)

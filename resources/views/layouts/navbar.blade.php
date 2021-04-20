@@ -33,14 +33,14 @@
             <span class="fa fa-bars"></span>
           </button>
           <div class="dropdown-menu dropdown-menu-right">
-            <a href="index.html" class="dropdown-item text-dark"
+            <a href="/" class="dropdown-item text-dark"
               ><span class="fa fa-home"></span> Home</a
             >
-            <a href="#" class="dropdown-item text-dark"
+            <a href="/config" class="dropdown-item text-dark"
               ><span class="fa fa-cog"></span> Settings</a
             >
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item text-dark"
+            <a href="/logout" class="dropdown-item text-dark"
               ><span class="fa fa-sign-out-alt"></span>Logout</a
             >
           </div>
