@@ -203,6 +203,7 @@ function sendmessage() {
   .then(data =>{ 
 
     bingo.push(data.path);
+    dates.push(data.created_at);
     range.setAttribute('max', Number(range.getAttribute('max')) + 1);
     if (range.value == range.getAttribute('max') - 1)
     {   
