@@ -43,7 +43,7 @@ class photoController extends Controller
   $entries =  entry::where('computer', employee::findorFail($id)->pc)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
 
 
-   return view('detailv2', compact('screenshots','liveinterval','employees','entries'));
+   return view('detailv2', compact('screenshots','liveinterval','employees','entries','id'));
 
 
     }
