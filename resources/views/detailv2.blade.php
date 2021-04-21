@@ -38,7 +38,7 @@
           </div>
         </div>
          <div class="row mb-4">
-          <div class="col-md-9 mb-5">
+          <div class="col-md-9 mb-3">
             <img id="frame" src="/img/phpKJiMYJ.jpg" width="100%" height="100%" />
             <div  class="form-group">
               <input style="width: 100%;"  id="range" oninput="refreshFrame(this.value)" class="handle" type="range" value="{{count($screenshots)}}" min="0" max="{{count($screenshots)}}">
@@ -60,6 +60,7 @@
           @endforeach
           </div>
         </div>
+        <b id="time">2021-04-25 16:06:06</b>
         <div class="row mt-5">
           <div class="col">
             <div class="form-row">
@@ -171,12 +172,15 @@ function sendmessage() {
 
   frame = document.getElementById('frame'); 
   range = document.getElementById('range');
+  time = document.getElementById('time');
 
-
+  var dates = [];
   var bingo = [];
   @foreach( $screenshots as $screenshot)
   bingo.push("{{$screenshot->path}}");
+  dates.push("{{$screenshot->created_at}}")
   @endforeach
+
 
   frame.src = "/" +bingo[bingo.length -1];
 
@@ -184,7 +188,7 @@ function sendmessage() {
     // body...
 
   frame.src = "/" + bingo[index-1];
-
+  time.innerText =  dates[index-1];
   }
 
 
@@ -204,6 +208,7 @@ function sendmessage() {
     {   
     range.value = Number(range.getAttribute('max'));
     frame.src = "/" + bingo[range.value-1];
+     time.innerText =  dates[range.value-1];
     }
     console.log('calistim')
    // getLastFrame();
