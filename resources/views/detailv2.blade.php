@@ -8,11 +8,14 @@
                   <div class="blog_item mr-1">
                       <div class="blog_image">
                           <div class="box">
-                            <img class="img-fluid" src="/{{$employee->last_screenshot}}">
+                            <a href="/detail/{{$employee->id}}">
+                          <img class="img-fluid" src="/{{$employee->last_screenshot}}">
+                        </a>
                           </div>
                           <div class="stack-top">
                             <p class="text-light text-center font-weight-bold">{{$employee->name}}</p>
                           </div>
+
                       </div>
                   </div>  
                  @endforeach       
@@ -24,7 +27,7 @@
       <div class="container">
         <div class="row">
           <div class="col-4">
-              <h5 class="text-info font-weight-bold">Kullanıcı Adı</h5>
+              <h5 class="text-info font-weight-bold">{{$employees[$id-1]->name}}</h5>
           </div>
           <div class="col-6">
             <div class="form-group">
@@ -45,8 +48,10 @@
             </div>
           </div>
         </div>
+
         <div class="row mb-1">
           <div class="col-md-9 mb-4">
+
             <img id="frame" src="/img/phpKJiMYJ.jpg" width="100%" height="100%" />
             <div  class="form-group">
               <input style="width: 100%;"  id="range" oninput="refreshFrame(this.value)" class="handle" type="range" value="{{count($screenshots)}}" min="0" max="{{count($screenshots)}}">
@@ -67,13 +72,12 @@
           @endforeach
           </div>
         </div>
-      
+         <b id="time">2021-04-25 16:06:06</b>
         <div class="row mb-2">
           <div class="tab">
             <button class="tablinks" onclick="openCity(event, 'message')" id="defaultOpen">Mesaj</button>
             <button class="tablinks" onclick="openCity(event, 'history')">Geçmiş</button>
           </div>
-
           <div id="message" class="tabcontent">
             <div class="row">
               <div class="col">
@@ -84,6 +88,7 @@
               <div class="col">
                 <div class="form-row">
                   <div class="form-group col-md-9">
+
                       <form id="msg" method="POST" action="/command">
                       @csrf
                       <input type="hidden" value="{{$screenshots[0]->pc}}" name="pc">
@@ -175,7 +180,7 @@
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="/js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js" integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg==" crossorigin="anonymous"></script>
     <script type="text/javascript">
@@ -261,6 +266,17 @@ document.getElementById("defaultOpen").click();
     
     console.log("in utils");
 
+    Swal.fire({
+  title: 'Bu işlemi yapmak istediğinize emin misiniz?',
+  showDenyButton: true,
+  showCancelButton: false,
+  confirmButtonText: 'Evet',
+  denyButtonText: "Hayır",
+}).then((result) => {
+  if (result.isConfirmed) {
+   
+
+
   var command = "";
      
    switch (selection) {
@@ -283,11 +299,12 @@ document.getElementById("defaultOpen").click();
         type: "POST",
         data: { 'command': command , '_token': csrf, 'pc': "{{$screenshots[0]->pc}}" },
         success: function (response) {
-            console.log("command executed");
+           Swal.fire('Başarılı', '', 'success')
         }
     });
 
   console.log(command);
+}});
   }
 
 
@@ -326,12 +343,15 @@ function sendmessage() {
 
   frame = document.getElementById('frame'); 
   range = document.getElementById('range');
+  time = document.getElementById('time');
 
-
+  var dates = [];
   var bingo = [];
   @foreach( $screenshots as $screenshot)
   bingo.push("{{$screenshot->path}}");
+  dates.push("{{$screenshot->created_at}}")
   @endforeach
+
 
   frame.src = "/" +bingo[bingo.length -1];
 
@@ -339,7 +359,7 @@ function sendmessage() {
     // body...
 
   frame.src = "/" + bingo[index-1];
-
+  time.innerText =  dates[index-1];
   }
 
 
@@ -354,10 +374,14 @@ function sendmessage() {
   .then(data =>{ 
 
     bingo.push(data.path);
+    dates.push(data.created_at);
     range.setAttribute('max', Number(range.getAttribute('max')) + 1);
-    if (range.value == range.getAttribute('max')) {}
+    if (range.value == range.getAttribute('max') - 1)
+    {   
     range.value = Number(range.getAttribute('max'));
     frame.src = "/" + bingo[range.value-1];
+     time.innerText =  dates[range.value-1];
+    }
     console.log('calistim')
    // getLastFrame();
 setTimeout(getLastFrame, {{ intval($liveinterval)*1000 }});
