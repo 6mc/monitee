@@ -63,7 +63,7 @@
           </div>
         </div>
         <b id="time">2021-04-25 16:06:06</b>
-        <b id="name">{{$employees[$id]->name}}</b>
+        <b id="name">{{$employees[$id-1]->name}}</b>
         <div class="row mt-5">
           <div class="col">
             <div class="form-row">
