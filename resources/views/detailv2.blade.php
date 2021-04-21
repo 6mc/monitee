@@ -7,7 +7,9 @@
                 @foreach($employees as $employee)
                   <div class="blog_item mr-1">
                       <div class="blog_image">
+                        <a href="/detail/{{$employee->id}}">
                           <img class="img-fluid" src="/{{$employee->last_screenshot}}">
+                        </a>
                       </div>
                   </div>  
                  @endforeach       
