@@ -200,9 +200,11 @@ function sendmessage() {
 
     bingo.push(data.path);
     range.setAttribute('max', Number(range.getAttribute('max')) + 1);
-    if (range.value == range.getAttribute('max')) {}
+    if (range.value == range.getAttribute('max') - 1)
+    {   
     range.value = Number(range.getAttribute('max'));
     frame.src = "/" + bingo[range.value-1];
+    }
     console.log('calistim')
    // getLastFrame();
 setTimeout(getLastFrame, {{ intval($liveinterval)*1000 }});
