@@ -38,4 +38,6 @@ Route::get('/history/{id}/{timestamp}', 'photoController@history')->middleware('
 
 Route::get('/live/{id}', 'photoController@live')->middleware('auth');
 Route::post('/command', 'EntryController@addCommand');
+Route::post('/message', 'EntryController@sendMessage')->middleware('auth');
 
+Route::post('/filterhistory', 'EntryController@filter')->middleware('auth');

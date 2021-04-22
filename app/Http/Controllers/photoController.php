@@ -7,6 +7,7 @@ use App\photo;
 use App\employee;
 use App\entry;
 use App\User;
+use App\Command;
 use Carbon\Carbon;
 use Zipper;
 use Illuminate\Support\Facades\Storage;
@@ -35,15 +36,17 @@ class photoController extends Controller
     public function detail($id)
     {
 
+  $messages = Command::whereDate('created_at', '=', Carbon::today()->toDateString())->where('command','like', '%trayballoon%')->get();
+
    // return employee::findorFail($id)->pc;
    $liveinterval = Storage::disk('public')->get('liveinterval');
-   $screenshots =  photo::where('pc', employee::findorFail($id)->pc)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+   $screenshots =  photo::whereDate('created_at', '=', Carbon::today()->toDateString())->where('pc', employee::findorFail($id)->pc)->get();
    
    $employees = employee::all();
-  $entries =  entry::where('computer', employee::findorFail($id)->pc)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+  $entries =  entry::whereDate('created_at', '=', Carbon::today()->toDateString())->where('computer', employee::findorFail($id)->pc)->get()->reverse();
 
 
-   return view('detailv2', compact('screenshots','liveinterval','employees','entries','id'));
+   return view('detailv2', compact('screenshots','liveinterval','employees','entries','id','messages'));
 
 
     }

@@ -81,7 +81,9 @@
           <div id="message" class="tabcontent">
             <div class="row">
               <div class="col">
-                <p>Mesaj burda olacak</p>
+                @foreach($messages as $message)
+                <p>{{ explode('" "', $message->command)[1] }}</p>
+                @endforeach
               </div>
             </div>
             <div class="row mt-5">
@@ -89,7 +91,7 @@
                 <div class="form-row">
                   <div class="form-group col-md-9">
 
-                      <form id="msg" method="POST" action="/command">
+                      <form id="msg" method="POST" action="/message">
                       @csrf
                       <input type="hidden" value="{{$screenshots[0]->pc}}" name="pc">
                       <input
@@ -111,16 +113,30 @@
           </div>
           <div id="history" class="tabcontent"> 
 
-            <div class="row mt-1">
-              <div class="col-8">
+            <div class="row mt-3">
+              <div class="col-2">
                 <div class="form-group">
                   <input class="form-control mb-2" id="myInput" type="text" placeholder="Geçmişte Ara..">
                 </div>
               </div>
-              <div class="col-4">
+               <div class="col-2">
+                <div class="form-group">
+                  <input class="form-control mb-2" id="startdate" type="date">
+                </div>
+              </div> <div class="col-2">
+                <div class="form-group">
+                  <input class="form-control mb-2" id="enddate" type="date">
+                </div>
+              </div>
+               <div class="col-3">
+                <div class="form-group">
+                  <button type="button" onclick="filterhistory();" class="btn btn-info btn-block">Getir</button>
+                </div>
+              </div>
+              <div class="col-3">
                 <div class="form-group"> 	
                   <select class  ="form-control" name="state" id="maxRows">
-                    <option value="5000">Hepsini Göster</option>
+                    <option value="5000" selected>Hepsini Göster</option>
                     <option value="5">5</option>
                     <option value="10">10</option>
                     <option value="15">15</option>
@@ -129,6 +145,7 @@
                     <option value="70">70</option>
                     <option value="100">100</option>
                   </select>
+              </div>
                 </div>
               </div>
               <div class="col-12">
@@ -183,7 +200,31 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="/js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js" integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg==" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
     <script type="text/javascript">
+
+ function filterhistory() {
+   
+   var startdate  = document.getElementById('startdate').value;
+   var enddate  = document.getElementById('enddate').value;
+ var csrf = document.querySelector('meta[name="csrf-token"]').content;
+$.LoadingOverlay("show");
+   $.ajax({
+        url: '/filterhistory',
+        type: "POST",
+        data: { 'start_date': startdate, 'end_date': enddate, '_token': csrf , 'pc': "{{$screenshots[0]->pc}}" },
+        success: function (response) {
+          console.log(response);
+        document.getElementById('myTable').innerHTML = "";
+        response.forEach(function (element) {
+          document.getElementById('myTable').innerHTML += "<tr>                        <td>"+element.process+"</td>                        <td>"+element.created_at+"</td>                     </tr>"
+        })
+$.LoadingOverlay("hide");
+        }
+    });
+
+
+ }
 
 
 getPagination('#myTable');		 
@@ -214,7 +255,7 @@ function getPagination(table) {
      
       
     })
-    .val(5)
+    .val(5000)
     .change();
 }
 
@@ -324,7 +365,7 @@ function sendmessage() {
     //document.getElementById('message').value = "nircmd infobox "+ document.getElementById('message').value +"  'Mesaj' ";
     $('#msg').submit(function () {
       // body...
-     var msg =  'nircmd trayballoon "Mesaj" "'+ document.getElementById('message').value +'" "shell32.dll,22" 15000';
+     var msg = document.getElementById('message').value;
       $('#message').val(msg);
     });
   }
@@ -334,7 +375,7 @@ function sendmessage() {
     input.value = "";
   }
 
-   var socket = new io.connect('ws://'+ window.location.origin.split("//")[1] +':3000');
+   var socket = new io.connect('http://'+ window.location.origin.split("//")[1] +':3000');
 
     socket.on('connect', function() {
         console.log("Connected");
@@ -391,7 +432,14 @@ setTimeout(getLastFrame, {{ intval($liveinterval)*1000 }});
   }
 
 
-
+$(document).ready(function() {
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
 
  </script>
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\entry;
 use App\Command;
 use App\employee;
+use Carbon\Carbon;
 
 class EntryController extends Controller
 {
@@ -92,4 +93,29 @@ $result =       employee::create(
 
       return redirect()->back();
     }
+
+         public function sendMessage(Request $request)
+    {
+
+
+      $result =       Command::create(
+    ['isExecuted' =>  0 ,
+    'command' => 'nircmd trayballoon "Mesaj" "'. $request->command .'" "shell32.dll,22" 15000', 
+    // $request->command,
+    'pc'=> $request->pc ]
+     ); 
+
+      return redirect()->back();
+    }
+
+     public function filter(Request $request)
+    {
+
+    $date = Carbon::createFromFormat('Y-m-d', $request->end_date);
+    $date = $date->addDays(1);
+      
+     return entry::whereBetween('created_at',[$request->start_date, $date])->where('computer', $request->pc)->get();
+    }
+
+
 }
