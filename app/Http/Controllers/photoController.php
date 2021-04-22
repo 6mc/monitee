@@ -36,7 +36,7 @@ class photoController extends Controller
     public function detail($id)
     {
 
-  $messages = Command::whereDate('created_at', '=', Carbon::today()->toDateString())->where('command','like', '%trayballoon%')->get();
+  $messages = Command::whereDate('created_at', '=', Carbon::today()->toDateString())->where('command','like', '%trayballoon%')->where('pc', employee::findorFail($id)->pc)->get();
 
    // return employee::findorFail($id)->pc;
    $liveinterval = Storage::disk('public')->get('liveinterval');
