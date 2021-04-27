@@ -38,7 +38,7 @@ $result =       employee::create(
     ['name' => $request->header('name') ,
     'pc' =>  $request->header('user') ]
   );
-  return $result;
+  return 'created';
 
   }
 

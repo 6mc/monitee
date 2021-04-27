@@ -121,11 +121,11 @@
               </div>
                <div class="col-2">
                 <div class="form-group">
-                  <input class="form-control mb-2" id="startdate" type="date">
+                  <input class="form-control mb-2" id="startdate" type="date" max="@php echo date("Y-m-d"); @endphp" min="@php echo explode(' ', \App\photo::find(1)->created_at)[0]; @endphp">
                 </div>
               </div> <div class="col-2">
                 <div class="form-group">
-                  <input class="form-control mb-2" id="enddate" type="date">
+                  <input class="form-control mb-2" id="enddate" type="date" max="@php echo date("Y-m-d"); @endphp" min="@php echo explode(' ', \App\photo::find(1)->created_at)[0]; @endphp">
                 </div>
               </div>
                <div class="col-3">

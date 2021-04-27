@@ -17,21 +17,34 @@ class employee extends Model
 
      public function getLastScreenshotAttribute()
     {
-    	return photo::where('pc',$this->pc)->orderBy('created_at', 'desc')->first()->path;
+    	$photo = photo::where('pc',$this->pc)->orderBy('created_at', 'desc')->first();
+     if($photo)
+      return $photo->path;
+    else
+      return "https://images.drivereasy.com/wp-content/uploads/2018/09/VGA-no-signal-image.jpg";
     }
          public function getLastWindowAttribute()
     {
-        return photo::where('pc',$this->pc)->orderBy('created_at', 'desc')->first()->path;
+        $photo = photo::where('pc',$this->pc)->orderBy('created_at', 'desc')->first();
+     if($photo)
+      return $photo->path;
+    else
+      return "https://images.drivereasy.com/wp-content/uploads/2018/09/VGA-no-signal-image.jpg";
     }
         public function getPcStatusAttribute()
-    {
-
+    { 
+      $photo =  photo::where('pc',$this->pc)->orderBy('created_at', 'desc')->first();
+      if ($photo)
+      {
       $now = new DateTime;
       $now->modify('-2 minutes');
       $now->format('Y-m-d H:i:s');
-      if ( photo::where('pc',$this->pc)->orderBy('created_at', 'desc')->first()->created_at  >= $now)
+      if ( $photo->created_at  >= $now)
       return 'green';
       else
       return 'red';
+      }
+      else
+        return 'red';
     }
 }

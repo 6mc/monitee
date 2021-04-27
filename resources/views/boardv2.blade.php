@@ -6,7 +6,17 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <form method="get" action="/home">
-           <input class="form-control bg-transparent border border-dark"  type="date" min="@php echo explode(' ', \App\photo::find(1)->created_at)[0]; @endphp" name="date" 
+           <input class="form-control bg-transparent border border-dark"  type="date" min="@php
+            
+            try{
+            echo explode(' ', \App\photo::find(1)->created_at)[0]; 
+          }
+            catch(exception $e){
+            echo date('Y-m-d');
+
+          }
+            
+            @endphp" name="date" 
            @if(isset($_GET['date']))
            value="@php echo $_GET['date']; @endphp"
            @else
