@@ -24,11 +24,16 @@ class photoController extends Controller
       //return $request->data;
      //return explode("/", $request->data)[2];
      //  return "tamamdir";
+	$shift_start = Storage::disk('public')->get('shift_start');
+  	$shift_end = Storage::disk('public')->get('shift_end');
+  	$days = Storage::disk('public')->get('days');
 
+      if (date('H') >= $shift_start && date('H')< $shift_end && date('N') <= $days ) {
      photo::create([
        'pc' => $request->pc,
        'path' => "images/".explode("/", $request->data)[2]
      ]);
+      }
 
      return "Success";
     }

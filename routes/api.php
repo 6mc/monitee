@@ -33,5 +33,8 @@ Route::post('/photo', 'photoController@store');
 Route::get('/test', function () {
  // return  \App\photo::find(1)->created_at;
 //return \App\photo::where('pc', employee::findorFail(1)->pc)->whereDate('created_at', '=', "05-04-2021")->get();
-return photo::where('pc',$this->pc)->orderBy('created_at', 'desc')->first();
+//return photo::where('pc',$this->pc)->orderBy('created_at', 'desc')->first();
+  if (date('H')> 8 && date('H')<18 && date('N') < 6 ) {
+echo date('H:i:s');
+      }
 });

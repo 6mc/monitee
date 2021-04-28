@@ -45,15 +45,20 @@ class HomeController extends Controller
     {
    $interval =  Storage::disk('public')->get('interval');
   $liveinterval = Storage::disk('public')->get('liveinterval');
+  $shift_start = Storage::disk('public')->get('shift_start');
+  $shift_end = Storage::disk('public')->get('shift_end');
+  $days = Storage::disk('public')->get('days');
    $employees = employee::all();
- return view('configv2', compact('interval', 'liveinterval','employees'));
+ return view('configv2', compact('interval', 'liveinterval','employees','shift_start','shift_end', 'days'));
     }
 
     public function editconfig(Request $request)
     {
      Storage::disk('public')->put('interval', $request->interval);
      Storage::disk('public')->put('liveinterval', $request->liveinterval);
-   
+     Storage::disk('public')->put('shift_start', $request->shift_start);
+     Storage::disk('public')->put('shift_end', $request->shift_end);
+     Storage::disk('public')->put('days', $request->days);
     $i = 0;
      foreach ($request->employeepc as $employee) {
        employee::where('pc', $employee)->update(['name' => $request->employeename[$i]]);

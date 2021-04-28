@@ -16,6 +16,33 @@
                   <label>Canlı yenileme (saniye)</label>
                   <input name="liveinterval" class="cells__input"value="{{$liveinterval}}"/>
                 </div>
+                  <div class="form-group">
+                  <label>Mesai Başlangiç Saati</label>
+                  <input name="shift_start" type="number" max="24" min="0" class="cells__input" value="{{$shift_start}}"/>
+                </div>
+                  <div class="form-group">
+                  <label>Mesai Bitiş Saati</label>
+                  <input name="shift_end" class="cells__input" type="number" max="24" min="0" value="{{$shift_end}}"/>
+                </div>
+                  <div class="form-group">
+                 <div class="weekDays-selector">
+  <input onchange="updateval()"  type="checkbox" id="weekday-mon" class="weekday" />
+  <label for="weekday-mon">P</label>
+  <input onchange="updateval()" type="checkbox" id="weekday-tue" class="weekday" />
+  <label for="weekday-tue">S</label>
+  <input onchange="updateval()" type="checkbox" id="weekday-wed" class="weekday" />
+  <label for="weekday-wed">Ç</label>
+  <input onchange="updateval()" type="checkbox" id="weekday-thu" class="weekday" />
+  <label for="weekday-thu">P</label>
+  <input onchange="updateval()" type="checkbox" id="weekday-fri" class="weekday" />
+  <label for="weekday-fri">C</label>
+  <input onchange="updateval()" type="checkbox" id="weekday-sat" class="weekday" />
+  <label for="weekday-sat">C</label>
+  <input onchange="updateval()" type="checkbox" id="weekday-sun" class="weekday" />
+  <label for="weekday-sun">P</label>
+</div>
+                </div>
+                <input type="hidden" id="days" name="days">
                 @foreach($employees as $employee)
                 <div class="form-group">
                   <input type="text" value="{{$employee->pc}}" name="employeepc[{{ $loop->index }}]" class="form-control" readonly />
@@ -48,5 +75,15 @@
     ></script>
 
     <script src="/js/script.js"></script>
+    <script>
+
+      for (var i = {{$days}} - 1; i >= 0; i--) {
+        document.getElementsByClassName('weekday')[i].checked = true;
+      }
+
+      function updateval() {
+        document.getElementById('days').value = document.querySelectorAll('input[class="weekday"]:checked').length;
+      }
+    </script>
   </body>
 </html>
