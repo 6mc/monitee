@@ -84,6 +84,8 @@
       function updateval() {
         document.getElementById('days').value = document.querySelectorAll('input[class="weekday"]:checked').length;
       }
+
+      updateval()
     </script>
   </body>
 </html>

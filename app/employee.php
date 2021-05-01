@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\photo;
+use App\entry;
 use DateTime;
 
 class employee extends Model
@@ -33,13 +34,15 @@ class employee extends Model
     }
         public function getPcStatusAttribute()
     { 
-      $photo =  photo::where('pc',$this->pc)->orderBy('created_at', 'desc')->first();
-      if ($photo)
+      $entry =  entry::where('computer',$this->pc)->orderBy('created_at', 'desc')->first();
+      if ($entry)
       {
       $now = new DateTime;
       $now->modify('-2 minutes');
       $now->format('Y-m-d H:i:s');
-      if ( $photo->created_at  >= $now)
+      if (strpos($entry->process, 'inactive') !== false  )
+      return 'yellow';
+      elseif ( $entry->created_at  >= $now)
       return 'green';
       else
       return 'red';

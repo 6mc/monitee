@@ -66,6 +66,8 @@
                   <div class="d-flex justify-content-end">
                     @if($employee->pc_status == 'green')
                     <span class="badge badge-pill badge-success">Online</span>
+                     @elseif ($employee->pc_status == 'yellow')
+                    <span class="badge badge-pill badge-warning">Inactive</span>
                     @else
                     <span class="badge badge-pill badge-danger">Offline</span>
                     @endif
