@@ -56,6 +56,23 @@ class photoController extends Controller
 
     }
 
+public function detailv1($id)
+    {
+
+  $messages = Command::whereDate('created_at', '=', Carbon::today()->toDateString())->where('command','like', '%trayballoon%')->where('pc', employee::findorFail($id)->pc)->get();
+
+   // return employee::findorFail($id)->pc;
+   $liveinterval = Storage::disk('public')->get('liveinterval');
+   $screenshots =  photo::whereDate('created_at', '=', Carbon::today()->toDateString())->where('pc', employee::findorFail($id)->pc)->get();
+   
+   $employees = employee::all();
+  $entries =  entry::whereDate('created_at', '=', Carbon::today()->toDateString())->where('computer', employee::findorFail($id)->pc)->get()->reverse();
+
+
+   return view('detail', compact('screenshots','liveinterval','employees','entries','id','messages'));
+
+
+    }
 
     public function redirecthistory(Request $request)
     {

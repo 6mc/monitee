@@ -34,6 +34,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/config', 'HomeController@config')->middleware('auth');
 Route::post('/config', 'HomeController@editconfig')->middleware('auth');
 Route::get('/detail/{id}', 'photoController@detail')->middleware('auth');
+Route::get('/detailv1/{id}', 'photoController@detailv1')->middleware('auth');
 Route::get('/history/{id}/{timestamp}', 'photoController@history')->middleware('auth');
 
 Route::get('/live/{id}', 'photoController@live')->middleware('auth');
