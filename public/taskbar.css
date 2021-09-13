@@ -1,0 +1,48 @@
+
+
+
+
+.dock {
+  background: #c0c0c0;
+  height: 38px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  border-top: 2px solid #efefef;
+  padding: 3px;
+  z-index: 1000;
+}
+
+.dock-time {
+  border-top: 2px solid #666;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  border-left: 2px solid #666;
+  float: right;
+  padding: 5px 15px 5px 35px;
+  font-size: 14px;
+  background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Gnome-audio-volume-high.svg/120px-Gnome-audio-volume-high.svg.png);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+}
+
+.start-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  line-height: 25px;
+  font-weight: bold;
+  padding-left: 31px;
+  padding-right: 7px;
+  height: 29px;
+  background-image: url("http://vignette4.wikia.nocookie.net/logopedia/images/b/b3/Windows_logo_(Pre-XP)_alt._color.svg.png/revision/latest?cb=20160311145452");
+  background-repeat: no-repeat;
+  background-size: 22px;
+  background-position: 5px center;
+  background-color: #c0c0c0;
+  border-top: 2px solid white;
+  border-right: 2px solid #222;
+  border-bottom: 2px solid #222;
+  border-left: 2px solid white;
+}

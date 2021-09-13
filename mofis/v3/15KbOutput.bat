@@ -1,0 +1,1 @@
+magick.exe mogrify -resize 1366x768 -format jpg -quality 10 test.jpg

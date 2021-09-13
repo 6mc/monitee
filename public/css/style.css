@@ -1,0 +1,373 @@
+body{
+  overflow-x: hidden;
+}
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.user_link{
+    transition: 0.3s;
+}
+.user_link:hover{
+  opacity: 0.3;
+}
+
+#myinput {
+  border-radius: 8px;
+  height: 8px;
+  width: 100%;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  width: 10px;
+  -webkit-appearance: none;
+  height: 12px;
+  background: black;
+  border-radius: 2px;
+}
+
+.overflow-div{
+  overflow-y: scroll;
+  height: 500px;
+  scrollbar-color: red;
+
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
+
+/*
+ * Custom translucent site header
+ */
+
+.site-header {
+  background-color: rgba(0, 0, 0, .85);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+.site-header a {
+  color: #999;
+  transition: ease-in-out color .15s;
+}
+.site-header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/*
+ * Dummy devices (replace them with your own or something else entirely!)
+ */
+
+.product-device {
+  position: absolute;
+  right: 10%;
+  bottom: -30%;
+  width: 300px;
+  height: 540px;
+  background-color: #333;
+  border-radius: 21px;
+  -webkit-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+
+.product-device::before {
+  position: absolute;
+  top: 10%;
+  right: 10px;
+  bottom: 10%;
+  left: 10px;
+  content: "";
+  background-color: rgba(255, 255, 255, .1);
+  border-radius: 5px;
+}
+
+.product-device-2 {
+  top: -25%;
+  right: auto;
+  bottom: 0;
+  left: 5%;
+  background-color: #e5e5e5;
+}
+
+
+/*
+ * Extra utilities
+ */
+
+.flex-equal > * {
+  -ms-flex: 1;
+  flex: 1;
+}
+@media (min-width: 768px) {
+  .flex-md-equal > * {
+    -ms-flex: 1;
+    flex: 1;
+  }
+}
+
+.overflow-hidden { overflow: hidden; }
+
+
+.blog_section {
+  padding-top: 2rem;
+  /*padding-bottom: 3rem;*/
+}
+.blog_section .blog_content .blog_item {
+  margin-bottom: 30px;
+  box-shadow: 0 0 11px 0 rgba(6, 22, 58, 0.14);
+  position: relative;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.blog_section .blog_content .blog_item:hover .blog_image img {
+  transform: scale(1.1);
+}
+.blog_section .blog_content .blog_item .blog_image {
+  overflow: hidden;
+  padding: 0;
+}
+.blog_section .blog_content .blog_item .blog_image img {
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+.blog_section .blog_content .blog_item .blog_image span i {
+  position: absolute;
+  z-index: 2;
+  color: #fff;
+  font-size: 18px;
+  width: 38px;
+  height: 45px;
+  padding-top: 7px;
+  text-align: center;
+  right: 20px;
+  top: 0;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 79%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 79%, 0 100%);
+  background-color: #ff5e14;
+}
+.blog_section .blog_content .blog_item .blog_details {
+  padding: 25px 20px 30px 20px;
+}
+.blog_section .blog_content .blog_item .blog_details .blog_title h5 a {
+  color: #020d26;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 25px;
+  line-height: 32px;
+  font-weight: 400;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+.blog_section .blog_content .blog_item .blog_details .blog_title h5 a:hover {
+  color: #ff5e14;
+}
+.blog_section .blog_content .blog_item .blog_details ul {
+  padding: 0 3px 10px 0;
+  margin: 0;
+}
+.blog_section .blog_content .blog_item .blog_details ul li {
+  display: inline-block;
+  padding-right: 15px;
+  position: relative;
+  color: #7f7f7f;
+}
+.blog_section .blog_content .blog_item .blog_details ul li i {
+  padding-right: 7px;
+}
+.blog_section .blog_content .blog_item .blog_details p {
+  border-top: 1px solid #e5e5e5;
+  margin-top: 4px;
+  padding: 20px 0 4px;
+}
+.blog_section .blog_content .blog_item .blog_details a {
+  font-size: 16px;
+  display: inline-block;
+  color: #ff5e14;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.blog_section .blog_content .blog_item .blog_details a:hover {
+  color: #020d26;
+}
+.blog_section .blog_content .blog_item .blog_details a i {
+  vertical-align: middle;
+  font-size: 20px;
+}
+.blog_section .blog_content .owl-nav {
+  display: block;
+}
+.blog_section .blog_content .owl-nav .owl-prev {
+  position: absolute;
+  left: -27px;
+  top: 33%;
+  border: 5px solid #fff;
+  text-align: center;
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  outline: 0;
+  background: #ff5e14;
+  transition: all 0.3s;
+  color: #fff;
+}
+.blog_section .blog_content .owl-nav .owl-prev span {
+  font-size: 25px;
+  margin-top: -6px;
+  display: inline-block;
+}
+.blog_section .blog_content .owl-nav .owl-prev:hover {
+  background: #fff;
+  border-color: #ff5e14;
+  color: #ff5e14;
+}
+.blog_section .blog_content .owl-nav .owl-next {
+  position: absolute;
+  right: -27px;
+  top: 33%;
+  border: 5px solid #fff;
+  text-align: center;
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  outline: 0;
+  background: #ff5e14;
+  color: #fff;
+  transition: all 0.3s;
+}
+.blog_section .blog_content .owl-nav .owl-next span {
+  font-size: 25px;
+  margin-top: -6px;
+  display: inline-block;
+}
+.blog_section .blog_content .owl-nav .owl-next:hover {
+  background: #fff;
+  border-color: #ff5e14;
+  color: #ff5e14;
+}
+
+@media only screen and (max-width: 577px) {
+  .blog_section .owl-nav .owl-prev {
+    left: -17px !important;
+  }
+  .blog_section .owl-nav .owl-next {
+    right: -17px !important;
+  }
+}
+.btn-link{
+  color:#E7571D;
+}
+.btn-link:hover{
+  color:#E7571D;
+}
+
+.btn-orange{
+  background-color: #E7571D;
+  color:white;
+}
+.btn-orange:hover{
+  background-color: white;
+  color:#E7571D;
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  width: 100%;
+}
+
+.box{
+  width: 100%;
+  height: 100%;            
+
+    
+}
+.stack-top{
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  z-index: 9;
+  bottom: 0;
+  left: 0;
+  background-color: #E7571D;
+  font-size: 13px;
+
+}
+
+.overflow-table{
+  overflow-y: scroll;
+  height: 500px;
+  width: 100%;
+
+}

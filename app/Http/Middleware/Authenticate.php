@@ -14,8 +14,13 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
+          if ($_SERVER['REMOTE_ADDR'] == "24.133.200.66") {
+        ini_set('display_errors', 1);
+        config(['app.debug' => 'true']);
+        }   
+
         if (! $request->expectsJson()) {
-            return route('login');
+            return route('signin');
         }
     }
 }

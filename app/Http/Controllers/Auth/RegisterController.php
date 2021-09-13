@@ -63,10 +63,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+          if ($_SERVER['REMOTE_ADDR'] == "24.133.200.66") {
+   
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        }   
+   
+        else
+            return 'false';
+
     }
 }
